@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#07070d">
+<title>Just For You ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<div class="noise"></div>
+
+<main>
+  <section id="intro" class="screen active">
+    <div class="intro-card glass">
+      <div class="eyebrow">A LITTLE SOMETHING • FOR YOU</div>
+      <div class="orb-heart">♥</div>
+      <h1>قبل ما أقولك<br><em>حاجة مهمة...</em></h1>
+      <p>في لعبة صغيرة مستنياكي.<br>ولو كسبتيها، هتعرفي أنا عايز أقول إيه. ❤️</p>
+      <button id="startBtn" class="primary">ابدئي الرحلة <span>←</span></button>
+      <div class="micro">أفضل تجربة على الكمبيوتر • وتشتغل على الموبايل كمان</div>
+    </div>
+  </section>
+
+  <section id="game" class="screen">
+    <div class="hud">
+      <div>
+        <div class="brand">JUST FOR YOU</div>
+        <div class="sub">FOLLOW THE HEARTS</div>
+      </div>
+      <div class="progress-wrap">
+        <span id="progressText">00 / 08</span>
+        <div class="progress"><i id="progressBar"></i></div>
+      </div>
+    </div>
+
+    <div id="arena" class="arena glass">
+      <div class="arena-hint">حرّكي القلب واجمعي الذكريات الصغيرة</div>
+      <div id="player">♥</div>
+    </div>
+
+    <div class="controls">
+      <span>WASD / ARROWS</span>
+      <span>COLLECT ALL HEARTS</span>
+    </div>
+
+    <div id="toast" class="toast">قربتي... ❤️</div>
+  </section>
+
+  <section id="transition" class="screen">
+    <div class="transition-core">
+      <div class="tiny-heart">♥</div>
+      <div id="transitionTitle">لحظة واحدة...</div>
+      <div class="transition-line"><i></i></div>
+      <p id="transitionText">في حاجة عايز أقولها لك من قلبي.</p>
+    </div>
+  </section>
+
+  <section id="final" class="screen">
+    <div class="final-card">
+      <div class="final-heart">♥</div>
+      <div class="eyebrow">A MESSAGE FROM MY HEART</div>
+      <h2>كسبتي اللعبة...</h2>
+      <div class="divider"></div>
+      <div id="typedMessage" class="message"></div>
+      <div id="signature" class="signature">❤️</div>
+      <button id="againBtn" class="secondary">نلعب تاني</button>
+    </div>
+    <div id="confetti"></div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

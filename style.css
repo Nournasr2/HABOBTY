@@ -1,0 +1,45 @@
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--pink:#ff4d83;--rose:#ff789d;--bg:#05050a;--muted:#8c8790}
+html,body{width:100%;height:100%;overflow:hidden}
+body{background:var(--bg);color:#fff;font-family:Cairo,sans-serif}
+button{font-family:inherit}
+#bgCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:-3}
+.noise{position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E")}
+.screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transform:scale(1.025);transition:opacity .8s ease,transform .8s ease,visibility .8s}
+.screen.active{opacity:1;visibility:visible;transform:scale(1)}
+.glass{background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 100px rgba(0,0,0,.5),inset 0 1px rgba(255,255,255,.08);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+.intro-card{width:min(620px,94vw);padding:62px 44px;text-align:center;border-radius:36px;position:relative;overflow:hidden}
+.intro-card:before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:var(--pink);filter:blur(100px);opacity:.13;top:-150px;left:50%;transform:translateX(-50%)}
+.eyebrow{font-family:"Playfair Display",serif;letter-spacing:5px;font-size:10px;color:#ff86a7}
+.orb-heart,.final-heart{color:var(--pink);text-shadow:0 0 22px rgba(255,77,131,.9),0 0 80px rgba(255,77,131,.35)}
+.orb-heart{font-size:82px;margin:16px 0 2px;animation:pulse 1.7s infinite}
+.intro-card h1{font-size:clamp(30px,5vw,48px);line-height:1.45;font-weight:800}
+.intro-card h1 em{font-family:"Playfair Display",serif;font-style:normal;color:#ff83a5}
+.intro-card p{margin-top:18px;color:#bbb5bd;line-height:2;font-size:15px}
+.primary{margin-top:32px;border:0;color:#fff;cursor:pointer;border-radius:999px;padding:15px 28px;font-size:15px;font-weight:800;background:linear-gradient(135deg,#ff5a8a,#d72c61);box-shadow:0 12px 40px rgba(255,67,116,.28);transition:.3s}
+.primary:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(255,67,116,.4)}
+.primary span{margin-right:12px}
+.micro{margin-top:23px;color:#67626a;font-size:10px}
+#game{flex-direction:column;justify-content:flex-start;padding-top:6vh}
+.hud{width:min(980px,94vw);display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.brand{font-family:"Playfair Display",serif;letter-spacing:4px;font-size:15px}.sub{font-size:8px;color:#65616a;letter-spacing:2px;margin-top:2px}
+.progress-wrap{width:210px}.progress-wrap span{display:block;text-align:left;direction:ltr;font-size:10px;color:#aaa4ac;margin-bottom:6px}.progress{height:3px;background:rgba(255,255,255,.08);border-radius:9px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff4d83,#ff9ab4);box-shadow:0 0 15px #ff4d83;transition:width .35s}
+.arena{width:min(980px,94vw);height:min(640px,70vh);border-radius:30px;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(255,68,119,.08),transparent 45%),rgba(255,255,255,.018)}
+.arena:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:55px 55px;mask-image:radial-gradient(circle,#000 20%,transparent 78%)}
+.arena-hint{position:absolute;top:17px;left:50%;transform:translateX(-50%);color:#656069;font-size:10px;white-space:nowrap}
+#player{position:absolute;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff9ab6,#ff3f77);font-size:25px;z-index:5;box-shadow:0 0 22px rgba(255,73,125,.85),0 0 65px rgba(255,73,125,.28);user-select:none}
+.heart{position:absolute;width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#ff789d;font-size:24px;filter:drop-shadow(0 0 9px rgba(255,80,130,.8));animation:float 1.6s ease-in-out infinite;transition:.25s}
+.heart:after{content:"";position:absolute;width:5px;height:5px;border-radius:50%;background:#fff;opacity:.55;top:7px;left:9px;filter:blur(1px)}
+.heart.collected{transform:scale(2.2);opacity:0}
+.controls{width:min(980px,94vw);display:flex;justify-content:space-between;color:#55515a;font-size:9px;letter-spacing:2px;margin-top:12px;direction:ltr}
+.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,20px);padding:10px 18px;border-radius:999px;background:rgba(15,12,18,.85);border:1px solid rgba(255,255,255,.08);color:#aaa4ab;font-size:11px;opacity:0;transition:.35s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}
+#transition{background:radial-gradient(circle,rgba(255,62,112,.09),transparent 45%)}
+.transition-core{text-align:center}.tiny-heart{font-size:55px;color:#ff5b87;text-shadow:0 0 35px rgba(255,73,125,.7);animation:pulse 1.4s infinite}.transition-core>div:nth-child(2){font-family:"Playfair Display",serif;font-size:30px;margin-top:15px}.transition-line{width:160px;height:1px;background:rgba(255,255,255,.08);margin:20px auto;overflow:hidden}.transition-line i{display:block;width:0;height:100%;background:#ff5b87;animation:line 2.3s forwards}.transition-core p{font-size:12px;color:#77727b}
+.final-card{text-align:center;width:min(760px,94vw);position:relative;z-index:5;padding:30px 20px}.final-heart{font-size:70px;animation:pulse 1.6s infinite}.final-card h2{font-size:clamp(29px,5vw,48px);margin-top:5px}.divider{width:75px;height:1px;background:linear-gradient(90deg,transparent,#ff648b,transparent);margin:24px auto}.message{max-width:680px;margin:auto;min-height:180px;font-size:clamp(17px,2.6vw,23px);line-height:2.15;color:#e9e4e8;font-weight:500}.message span{display:inline;opacity:0;animation:wordIn .1s forwards}.signature{opacity:0;margin-top:14px;color:#ff789d;font-size:28px;transform:translateY(10px);transition:1s}.signature.show{opacity:1;transform:none}.secondary{margin-top:22px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);color:#817b84;border-radius:999px;padding:9px 19px;cursor:pointer;transition:.3s}.secondary:hover{color:#fff;border-color:rgba(255,86,130,.45)}
+.confetti-piece{position:absolute;left:50%;top:55%;font-size:14px;color:#ff7198;pointer-events:none;animation:rise 3.5s ease-out forwards}
+@keyframes pulse{0%,100%{transform:scale(1)}15%{transform:scale(1.12)}30%{transform:scale(1)}45%{transform:scale(1.07)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes wordIn{to{opacity:1}}
+@keyframes line{to{width:100%}}
+@keyframes rise{0%{transform:translate(0,0) scale(.4);opacity:0}15%{opacity:1}100%{transform:translate(var(--x),-340px) rotate(var(--r)) scale(1.2);opacity:0}}
+@media(max-width:700px){.intro-card{padding:45px 24px}.hud{width:92vw}.progress-wrap{width:130px}.arena{width:92vw;height:58vh}.controls{width:92vw;font-size:7px}.message{font-size:16px}.final-heart{font-size:60px}.arena-hint{font-size:9px}}
